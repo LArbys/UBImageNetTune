@@ -14,13 +14,16 @@ caffe.set_mode_gpu()
 
 prototxt = "bvlc_googlenet_test.prototxt"
 #model = "snapshot_rmsprop_googlenet_iter_100000.caffemodel"
-model = "snapshot_rmsprop_googlenet_iter_32500.caffemodel"
-out_tag = "bnb2"
+#change
+model = "snapshot_rmsprop_googlenet_pmt_iter_83800.caffemodel"
+#model = "snapshot_rmsprop_googlenet_iter_7500.caffemodel"
+out_tag = "valpmtweight"
 #rootfile = "/mnt/disk1/production/v04/train_sample/val_filtered.root"
 #rootfile="/mnt/disk1/production/v04/adcscale/data_extbnb/extbnb_part00.root"
 #rootfile="/mnt/disk1/production/v04/adcscale/data_bnb/extbnb_part00.root"
-rootfile="/mnt/disk1/production/v04/adcscale/data_bnb/bnb_part00.root"
-
+rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_val.root"
+#rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_bnb.root"
+#rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_ext_part000b_wroi.root"
 
 net = caffe.Net( prototxt, model, caffe.TEST )
 input_shape = net.blobs["data"].data.shape
@@ -28,7 +31,7 @@ batch_size = input_shape[0]
 binlabels = {0:"background",1:"neutrino"}
 classlabels = binlabels.keys()
 
-nevents = 10000
+nevents = 15000
 store_pe = True
 draw_pmt_wfm = False
 
@@ -65,6 +68,7 @@ filler = larcv.ThreadFillerFactory.get_filler("test")
 ibatch = 0
 ievents = 0
 inu = 0
+i99 = 0
 
 if draw_pmt_wfm:
     c = rt.TCanvas("c","c",800,600)
@@ -125,8 +129,11 @@ while ibatch<nbatches:
         ievents += 1
         if nuprob[0]>0.5:
             inu+=1
+        if nuprob[0]>0.99:
+            i99+=1
 
     print "nu fraction: ",float(inu)/float(ievents)
+    print "nu-99: %d of %d"%(i99,ievents)
     ibatch += 1
     
 out.Write()
