@@ -13,17 +13,16 @@ caffe.set_device(gpu_id)
 caffe.set_mode_gpu()
 
 prototxt = "bvlc_googlenet_test.prototxt"
-#model = "snapshot_rmsprop_googlenet_iter_100000.caffemodel"
-#change
-model = "snapshot_rmsprop_googlenet_pmt_iter_83800.caffemodel"
-#model = "snapshot_rmsprop_googlenet_iter_7500.caffemodel"
+model = "/mnt/disk1/taritree/larbys/saved_training/googlenet_3plane_imagenetfinetune/matt/snapshot_rmsprop_googlenet_pmt_iter_83800.caffemodel"
 out_tag = "valpmtweight"
-#rootfile = "/mnt/disk1/production/v04/train_sample/val_filtered.root"
-#rootfile="/mnt/disk1/production/v04/adcscale/data_extbnb/extbnb_part00.root"
-#rootfile="/mnt/disk1/production/v04/adcscale/data_bnb/extbnb_part00.root"
-rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_val.root"
-#rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_bnb.root"
-#rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_ext_part000b_wroi.root"
+
+# Available Data Files [remember coordinate file here with filler_testing.cfg]
+#rootfile = "/mnt/disk1/production/v04/train_sample/val_filtered.root"                  # MC Validation sample, filtered for CCQE
+#rootfile="/mnt/disk1/production/v04/adcscale/data_extbnb/extbnb_part00.root"           # DATA External trigger + BNB software trigger
+#rootfile="/mnt/disk1/production/v04/adcscale/data_bnb/bnb_part00.root"                 # DATA Booster Neutrino Beam
+rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_val.root"                   # MC Validation sample, filtered for CC-inclusive, contains PMT-images
+#rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_bnb.root"                  # DATA Booster Neutrino Beam, contains PMT-images
+#rootfile="/mnt/disk1/production/v04/train_sample/pmt_weight_ext_part000b_wroi.root"    # DATA External trigger + BNB software trigger, contains PMT-images
 
 net = caffe.Net( prototxt, model, caffe.TEST )
 input_shape = net.blobs["data"].data.shape
