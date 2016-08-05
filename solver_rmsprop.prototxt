@@ -3,17 +3,18 @@ train_net: "bvlc_googlenet_train.prototxt"
 test_net:  "bvlc_googlenet_val.prototxt"
 # test_iter specifies how many forward passes the test should carry out.
 # In the case of MNIST, we have test batch size 100 and 100 test iterations,
+iter_size: 1
 # covering the full 10,000 testing images.
 test_iter: 100
 # Carry out testing every 500 training iterations.
 test_interval: 100
 # The base learning rate, momentum and the weight decay of the network.
-base_lr: 0.0001
+base_lr: 0.00004
 momentum: 0.0
 weight_decay: 0.0
 # The learning rate policy
 lr_policy: "inv"
-gamma: 0.0001
+gamma: 0.0002
 power: 0.75
 # Display every 20 iterations
 display: 20

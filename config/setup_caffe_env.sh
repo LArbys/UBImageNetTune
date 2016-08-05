@@ -1,5 +1,5 @@
-source ~/setup_cuda.sh
-export CAFFE_DIR=/home/taritree/working/larbys/v4/caffe
+echo 'Setup Caffe'
+export CAFFE_DIR=/home/taritree/software/caffe_larbys
 export CAFFE_LIBDIR=${CAFFE_DIR}/build/lib
 export CAFFE_INCDIR=${CAFFE_DIR}/build/include
 export CAFFE_BINDIR=${CAFFE_DIR}/build/tools

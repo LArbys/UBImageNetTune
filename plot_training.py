@@ -5,8 +5,8 @@ import numpy as np
 
 #ntraining = 46527
 #ntraining = 101191
-ntraining =  53261
-nevents_per_iteration = 10
+ntraining =  100232
+nevents_per_iteration = 8
 
 iters_per_point = 20
 test_iters_per_point = 100

@@ -8,7 +8,6 @@ layer {
     batch_size: 1
     filler_config: "filler.cfg"
     filler_name: "test"
-    use_thread: true
   }
 }
 layer {

@@ -5,10 +5,9 @@ layer {
   top: "data"
   top: "label"
   root_data_param {
-    batch_size: 10
+    batch_size: 8
     filler_config: "filler.cfg"
     filler_name: "train"
-    use_thread: true
   }
 }
 layer {
